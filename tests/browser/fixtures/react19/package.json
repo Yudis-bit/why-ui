@@ -1,0 +1,9 @@
+{
+  "name": "@why-ui-test/react19",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  }
+}

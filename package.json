@@ -1,0 +1,61 @@
+{
+  "name": "why-ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Runtime evidence for coding agents.",
+  "bin": {
+    "why-ui": "./bin/why-ui.js"
+  },
+  "scripts": {
+    "build": "tsc && npm run build:extension",
+    "build:extension": "node scripts/build-extension.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.extension.json",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:browser": "npm run build && playwright test --config tests/browser/playwright.config.mjs",
+    "test:e2e": "npm run build && playwright test --config tests/e2e/playwright.config.mjs",
+    "test:browser:install": "playwright install chromium"
+  },
+  "workspaces": [
+    "tests/browser/fixtures/react18",
+    "tests/browser/fixtures/react19"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/chrome": "^0.2.8",
+    "@types/node": "^26.4.1",
+    "@types/ws": "^8.18.1",
+    "esbuild": "0.28.2",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@jridgewell/trace-mapping": "^0.3.31",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ajv": "^8.20.0",
+    "ws": "^8.21.3"
+  },
+  "license": "MIT",
+  "author": "Yudistira Putra",
+  "keywords": [
+    "mcp",
+    "coding-agents",
+    "chrome-extension",
+    "debugging",
+    "frontend",
+    "react",
+    "developer-tools",
+    "claude-code",
+    "cursor"
+  ],
+  "files": [
+    "bin/",
+    "dist/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ]
+}

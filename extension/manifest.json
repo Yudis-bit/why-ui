@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "why-ui",
+  "version": "0.1.0",
+  "description": "Runtime evidence for coding agents.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_title": "why-ui — arm this tab"
+  },
+  "options_page": "popup.html",
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "commands": {
+    "arm-tab": {
+      "suggested_key": {
+        "default": "Alt+Shift+Y"
+      },
+      "description": "Arm why-ui on current tab"
+    }
+  }
+}

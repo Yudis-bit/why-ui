@@ -1,0 +1,9 @@
+{
+  "name": "@why-ui-test/react18",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "types": ["chrome"]
+  },
+  "include": ["extension/**/*.ts", "src/sensor-main-world.ts", "src/types.ts", "src/bridge-protocol.ts"]
+}
