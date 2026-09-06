@@ -25,9 +25,11 @@ flowchart LR
 Requires Node.js **22.13+**, npm, and desktop Chrome **116+** with unpacked extensions
 allowed. Validation uses Chromium 153 and React 18.3.1 / 19.2.8. React is optional.
 
-Clone this repository, then:
+Clone and build:
 
 ```sh
+git clone https://github.com/Yudis-bit/why-ui.git
+cd why-ui
 npm ci
 npm run build
 ```

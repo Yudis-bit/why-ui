@@ -4,6 +4,14 @@
   "private": true,
   "type": "module",
   "description": "Runtime evidence for coding agents.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yudis-bit/why-ui.git"
+  },
+  "homepage": "https://github.com/Yudis-bit/why-ui#readme",
+  "bugs": {
+    "url": "https://github.com/Yudis-bit/why-ui/issues"
+  },
   "bin": {
     "why-ui": "./bin/why-ui.js"
   },
