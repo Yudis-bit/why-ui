@@ -3,14 +3,21 @@ const form = document.querySelector<HTMLFormElement>("#pair")!;
 const port = document.querySelector<HTMLInputElement>("#port")!;
 const forget = document.querySelector<HTMLButtonElement>("#forget")!;
 let initialized = false;
+let refreshing = false;
 async function refresh(): Promise<void> {
+  if (refreshing) return;
+  refreshing = true;
   try {
     const result = await chrome.runtime.sendMessage({ type: "GET_STATUS" });
     status.textContent = result.authenticated ? (result.session ? "Connected · tab armed" : "Connected · no tab armed")
       : result.issue ?? (result.paired ? "Paired · daemon disconnected. Start why-ui mcp or reconnect." : "Not paired. Run why-ui pair and enter its token.");
     form.hidden = result.paired; forget.hidden = !result.paired;
-    if (!initialized) { port.value = String(result.port); initialized = true; }
+    if (!initialized) {
+      port.value = String(result.port); initialized = true;
+      document.querySelectorAll<HTMLInputElement | HTMLButtonElement>("input, button").forEach(control => { control.disabled = false; });
+    }
   } catch { status.textContent = "Extension unavailable. Reopen its settings."; }
+  finally { refreshing = false; }
 }
 async function send(type: string, fields: Record<string, unknown> = {}): Promise<void> {
   try {

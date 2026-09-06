@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>why-ui</title><link rel="stylesheet" href="popup.css"></head>
 <body><h1>why-ui</h1><p id="status" role="status">Connecting…</p>
-<label for="port">Local bridge port</label><input id="port" type="number" min="1" max="65535" value="9876" required>
+<label for="port">Local bridge port</label><input id="port" type="number" min="1" max="65535" value="9876" required disabled>
 <form id="pair">
-<label for="token">One-time pairing token</label><input id="token" type="password" autocomplete="off" required maxlength="64">
-<button type="submit">Pair extension</button></form>
-<button id="connect">Reconnect</button><button id="disarm">Disarm</button><button id="forget" hidden>Forget pairing</button>
+<label for="token">One-time pairing token</label><input id="token" type="password" autocomplete="off" required maxlength="64" disabled>
+<button type="submit" disabled>Pair extension</button></form>
+<button id="connect" disabled>Reconnect</button><button id="disarm" disabled>Disarm</button><button id="forget" hidden disabled>Forget pairing</button>
 <p>First connection: run <code>why-ui pair</code> locally and enter its one-time token above.</p>
 <p>To arm, open your application tab and select the why-ui toolbar action or press Alt+Shift+Y. Then move your pointer over the interaction to inspect.</p><script src="popup.js" type="module"></script></body></html>

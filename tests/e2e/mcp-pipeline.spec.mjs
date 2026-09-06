@@ -9,6 +9,11 @@ test("disconnected MCP request terminates with BRIDGE_NOT_CONNECTED", async () =
 test("paired real worker without an armed tab returns TAB_NOT_CONNECTED", async () => {
   await h.launch(); expect((await h.inspect()).error.code).toBe("TAB_NOT_CONNECTED");
 });
+test("initial settings hydration cannot overwrite an entered pairing port", async () => {
+  await h.launch({ holdInitialStatus: true });
+  expect(h.daemon.bridgeServer.isConnected()).toBe(true);
+  expect((await h.inspect()).error.code).toBe("TAB_NOT_CONNECTED");
+});
 test("real action grants activeTab; no movement returns NO_POINTER_CAPTURED", async () => {
   const page = await openFixture(await h.launch()); await h.arm(page);
   expect((await h.inspect()).error.code).toBe("NO_POINTER_CAPTURED");

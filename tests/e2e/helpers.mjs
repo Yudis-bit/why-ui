@@ -12,14 +12,30 @@ export function removeTemp(dir) {
   fs.rmSync(resolved, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
 }
 /** Drives the production extension UI; browser protocol is test-driver infrastructure only. */
-export async function extensionBrowser(port, pairingToken, { pairOnly = false } = {}) {
+export async function extensionBrowser(port, pairingToken, { pairOnly = false, holdInitialStatus = false } = {}) {
   const extPath = path.resolve("dist/extension");
   const context = await chromium.launchPersistentContext("", { channel: "chromium", headless: true,
     args: [`--disable-extensions-except=${extPath}`, `--load-extension=${extPath}`, "--enable-unsafe-extension-debugging"], viewport: { width: 1280, height: 800 } });
   try {
     const worker = context.serviceWorkers()[0] ?? await context.waitForEvent("serviceworker");
     const extensionId = new URL(worker.url()).host, cdp = await context.browser().newBrowserCDPSession();
-    const settings = await context.newPage(); await settings.goto(`chrome-extension://${extensionId}/popup.html`);
+    const settings = await context.newPage();
+    if (holdInitialStatus) await settings.addInitScript(() => {
+      const send = chrome.runtime.sendMessage.bind(chrome.runtime);
+      const gate = new Promise(resolve => { window.releaseInitialStatus = resolve; });
+      let held = false;
+      chrome.runtime.sendMessage = async message => {
+        const result = await send(message);
+        if (message.type === "GET_STATUS" && !held) { held = true; await gate; }
+        return result;
+      };
+    });
+    await settings.goto(`chrome-extension://${extensionId}/popup.html`);
+    if (holdInitialStatus) {
+      await expect(settings.locator("#port")).toBeDisabled();
+      await expect(settings.getByRole("button", { name: "Pair extension" })).toBeDisabled();
+      await settings.evaluate(() => window.releaseInitialStatus());
+    }
     await settings.locator("#port").fill(String(port)); await settings.locator("#token").fill(pairingToken);
     await settings.getByRole("button", { name: "Pair extension" }).click();
     if (pairOnly) await expect(settings.locator("#pair")).toBeHidden();
@@ -44,8 +60,8 @@ export async function harness(options = {}) {
   return {
     daemon, client, logs,
     get context() { return context; }, get worker() { return worker; }, get cdp() { return cdp; },
-    async launch() {
-      extension = await extensionBrowser(daemon.port, daemon.pairingToken);
+    async launch(options = {}) {
+      extension = await extensionBrowser(daemon.port, daemon.pairingToken, options);
       ({ context, worker, cdp } = extension);
       await expect.poll(() => daemon.bridgeServer.isConnected()).toBe(true);
       return context;
