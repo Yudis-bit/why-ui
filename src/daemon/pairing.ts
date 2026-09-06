@@ -33,6 +33,14 @@ function readAuth(authFile: string): StoredAuth {
   } catch { throw new Error("Invalid why-ui auth state. Move auth.json aside to pair again."); }
 }
 
+/** Read-only onboarding status; never creates auth state or returns credentials. */
+export function readPairingStatus(customDir?: string): "missing" | "unpaired" | "paired" | "invalid" {
+  const file = path.join(customDir ?? getDefaultConfigDir(), "auth.json");
+  if (!fs.existsSync(file)) return "missing";
+  try { return readAuth(file).pairedOrigin ? "paired" : "unpaired"; }
+  catch { return "invalid"; }
+}
+
 export function loadOrCreateDeviceSecret(customDir?: string): { secret: string; pairedOrigin?: string | undefined; configPath: string } {
   const dir = customDir ?? getDefaultConfigDir();
   const authFile = path.join(dir, "auth.json");

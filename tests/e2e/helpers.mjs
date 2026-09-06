@@ -12,8 +12,8 @@ export function removeTemp(dir) {
   fs.rmSync(resolved, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
 }
 /** Drives the production extension UI; browser protocol is test-driver infrastructure only. */
-export async function extensionBrowser(port, pairingToken, { pairOnly = false, holdInitialStatus = false } = {}) {
-  const extPath = path.resolve("dist/extension");
+export async function extensionBrowser(port, pairingToken, { pairOnly = false, holdInitialStatus = false, extensionPath = "dist/extension" } = {}) {
+  const extPath = path.resolve(extensionPath);
   const context = await chromium.launchPersistentContext("", { channel: "chromium", headless: true,
     args: [`--disable-extensions-except=${extPath}`, `--load-extension=${extPath}`, "--enable-unsafe-extension-debugging"], viewport: { width: 1280, height: 800 } });
   try {
