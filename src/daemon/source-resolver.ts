@@ -45,11 +45,15 @@ function boundedSourceMap(value: unknown, depth = 0, budget = { maps: 0, sources
 /** All runtime paths, including source-map sources, pass both lexical and realpath checks. */
 export class SourceResolver {
   readonly root: Promise<string>;
+  private readonly workspacePath: string;
   private readonly assets = new Map<string, Promise<{ body: string; url: string } | undefined>>();
   private indexComplete = true;
   private deadline = Infinity;
   get isIndexComplete(): boolean { return this.indexComplete; }
-  constructor(workspace: string) { this.root = fs.realpath(path.resolve(workspace)); }
+  constructor(workspace: string) {
+    this.workspacePath = path.resolve(workspace);
+    this.root = fs.realpath(this.workspacePath);
+  }
   async localFile(input: string, relativeTo?: string): Promise<string | undefined> {
     try {
       if (!input || input.length > 4096 || /[\u0000-\u001f]/.test(input)) return undefined;
@@ -70,7 +74,10 @@ export class SourceResolver {
       // Runtime paths are not allowed to use traversal, even if normalization could land inside.
       if (value.split(/[\\/]/).includes("..")) return undefined;
       const file = path.resolve(relativeTo ?? root, value);
-      if (!inside(root, file)) return undefined;
+      // A configured workspace may use a junction or Windows short-name alias.
+      // Admit that lexical spelling too, then require the canonical destination
+      // to remain inside the canonical workspace before any file content read.
+      if (!inside(root, file) && !inside(this.workspacePath, file)) return undefined;
       const real = await fs.realpath(file);
       if (!inside(root, real) || !(await fs.stat(real)).isFile()) return undefined;
       return real;

@@ -19,14 +19,14 @@ async function workspace(t) {
 for (const input of ["src/Button.tsx", "webpack://app/./src/Button.tsx", "webpack-internal:///(app-pages-browser)/./src/Button.tsx", "turbopack:///[project]/src/Button.tsx", "http://127.0.0.1:5173/src/Button.tsx"]) {
   test(`resolves confined development path ${input}`, async t => {
     const { root, resolver } = await workspace(t);
-    assert.equal(await resolver.localFile(input), fs.realpathSync(path.join(root, "src", "Button.tsx")));
+    assert.equal(await resolver.localFile(input), await fs.promises.realpath(path.join(root, "src", "Button.tsx")));
   });
 }
 test("absolute and Vite fs paths require workspace containment", async t => {
   const { root, resolver } = await workspace(t);
   const file = path.join(root, "src", "Button.tsx");
-  assert.equal(await resolver.localFile(file), fs.realpathSync(file));
-  assert.equal(await resolver.localFile(`/@fs/${file}`), fs.realpathSync(file));
+  assert.equal(await resolver.localFile(file), await fs.promises.realpath(file));
+  assert.equal(await resolver.localFile(`/@fs/${file}`), await fs.promises.realpath(file));
   for (const input of ["../outside.tsx", "src/../../outside.tsx", "%2e%2e/outside.tsx", "file:///etc/passwd", "https://user:pass@127.0.0.1/src/Button.tsx"]) assert.equal(await resolver.localFile(input), undefined);
 });
 test("symlink escape is rejected", async t => {
@@ -34,6 +34,19 @@ test("symlink escape is rejected", async t => {
   const outside = await workspace(t);
   fs.symlinkSync(outside.root, path.join(root, "escape"), "junction");
   assert.equal(await resolver.localFile("escape/src/Button.tsx"), undefined);
+});
+test("a configured workspace alias resolves sources while retaining realpath confinement", async t => {
+  const { root } = await workspace(t);
+  const holder = await workspace(t), outside = await workspace(t);
+  const alias = path.join(holder.root, "workspace-alias");
+  fs.symlinkSync(root, alias, "junction");
+  fs.symlinkSync(outside.root, path.join(root, "escape"), "junction");
+  const resolver = new SourceResolver(alias);
+  const expected = await fs.promises.realpath(path.join(root, "src", "Button.tsx"));
+  assert.equal(await resolver.localFile(path.join(alias, "src", "Button.tsx")), expected);
+  assert.equal(await resolver.localFile(`/@fs/${path.join(alias, "src", "Button.tsx")}`), expected);
+  assert.equal(await resolver.localFile(path.join(alias, "escape", "src", "Button.tsx")), undefined);
+  assert.equal(await resolver.localFile(path.join(outside.root, "src", "Button.tsx")), undefined);
 });
 test("inline source map symbolicates to an existing local source", async t => {
   const { root, resolver } = await workspace(t);
