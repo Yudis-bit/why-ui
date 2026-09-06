@@ -22,7 +22,8 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "test:browser": "npm run build && playwright test --config tests/browser/playwright.config.mjs",
     "test:e2e": "npm run build && playwright test --config tests/e2e/playwright.config.mjs",
-    "test:browser:install": "playwright install chromium"
+    "test:browser:install": "playwright install chromium",
+    "test:dogfood": "npm run build && playwright test --config tests/dogfood/playwright.config.mjs"
   },
   "workspaces": [
     "tests/browser/fixtures/react18",
