@@ -19,6 +19,7 @@ export async function doctor(workspace: string, port: number, configDir?: string
   return { ok: nodeSupported && extensionBuilt && pairing !== "invalid", node: process.versions.node,
     nodeSupported, workspace, extensionBuilt, extensionPath, pairing, port, portStatus,
     browserSession: "UNKNOWN", mcpConfiguration: "NOT_CHECKED",
+    mcpServer: { command: process.execPath, args: [fileURLToPath(new URL("../../bin/why-ui.js", import.meta.url)), "mcp", "--workspace", workspace] },
     next: pairing === "paired" ? "Start your agent's why-ui mcp connection, arm the tab, and move the pointer."
       : "Run why-ui pair, open extension Options, and enter the one-time token.",
     limitation: "A TCP listener does not prove daemon identity, authentication, or an armed browser session. Check the extension badge and your agent's MCP status." };
@@ -32,5 +33,6 @@ export function formatDoctor(result: Awaited<ReturnType<typeof doctor>>): string
     `Pairing: ${result.pairing}`,
     `127.0.0.1:${result.port}: ${result.portStatus} (TCP only)`,
     result.limitation, result.next,
+    `MCP server configuration: ${JSON.stringify(result.mcpServer)}`,
   ].join("\n") + "\n";
 }

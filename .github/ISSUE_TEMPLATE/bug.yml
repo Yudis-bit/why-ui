@@ -1,0 +1,28 @@
+name: Interaction diagnosis bug
+description: Wrong blocker, missing evidence, or a verification result you cannot explain.
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: 'Use a small public reproduction. Remove secrets and private data. Security vulnerabilities belong in the private Security form.'
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: why-ui, Chrome, Node, OS, and framework/version if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Public repo/branch or minimal HTML/CSS, steps to arm and inspect, and selector if needed.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed result
+      description: Include the redacted diagnosis or verification reasons. A small screenshot of your reproduction is optional.
+    validations:
+      required: true

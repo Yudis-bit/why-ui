@@ -8,9 +8,10 @@ import { SourceResolver } from "./source-resolver.js";
 import { WorkspaceObserver } from "./workspace.js";
 import { VerificationService } from "./verification.js";
 import { inspectionSlice } from "./mcp-result.js";
+import { formatInspection, formatVerification } from "./format-result.js";
 
 const error = (code: WhyUiErrorCode, message: string) => ({ ok: false as const, error: { code, message } });
-const reply = (response: Record<string, unknown>) => ({ content: [{ type: "text" as const, text: JSON.stringify(response) }],
+const reply = (response: Record<string, unknown>, text = JSON.stringify(response)) => ({ content: [{ type: "text" as const, text }],
   isError: response.ok === false, structuredContent: response });
 
 export function createMcpServer(bridgeServer: BridgeServer): Server {
@@ -49,14 +50,14 @@ export function createMcpServer(bridgeServer: BridgeServer): Server {
           if (!session || session.sessionId !== bridgeServer.getActiveSession()?.sessionId) return reply(error("TAB_NOT_CONNECTED", "The armed tab changed during inspection."));
           const baseline = await new WorkspaceObserver(bridgeServer.workspace).baseline(capture.result, session, sources);
           bridgeServer.inspectionStore.setBaseline(capture.result.inspectionId, baseline);
-          return reply(response);
+          return reply(response, formatInspection(response.result));
         } finally { activeInspections--; }
       }
       if (name === "verify_fix") {
         if (!validateVerifyInput(args ?? {})) return reply(error("INVALID_OPTIONS", "Invalid verify_fix options."));
         const response = await verification.verify(args as unknown as VerifyFixRequest);
         if (!validateVerifyOutput(response)) return reply(error("INTERNAL_BRIDGE_ERROR", "Invalid verification result."));
-        return reply(response);
+        return reply(response, response.ok ? formatVerification(response.result) : JSON.stringify(response));
       }
       return reply(error("INVALID_OPTIONS", "Unknown tool requested."));
     } catch {

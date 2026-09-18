@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>why-ui — Browser evidence for coding agents</title>
+<meta name="description" content="Inspect the browser's actual interaction target and blocker, resolve local source, and independently verify a code fix. Local Chrome extension and MCP tools.">
+<link rel="stylesheet" href="style.css"></head>
+<body><main>
+<nav><a class="wordmark" href="https://github.com/Yudis-bit/why-ui">why-ui</a><a href="https://github.com/Yudis-bit/why-ui">GitHub repository ↗</a></nav>
+<p class="eyebrow">LOCAL CHROME RUNTIME → MCP</p>
+<h1>Coding agents can read CSS.<br>Give them browser evidence.</h1>
+<p class="lead">Find the element covering your button. Trace it toward local source.<br>Patch the code. Let the browser determine whether the fix worked.</p>
+<div class="links"><a class="primary" href="https://github.com/Yudis-bit/why-ui/releases/latest">Get the release</a><a href="#install">Installation ↓</a></div>
+<figure><img src="media/demo.gif" width="960" height="600" alt="Real Chromium recording: payment button covered by a backdrop; MCP identifies the blocker and source; an actual source patch and reload lead to VERIFIED_PASS with sampled blockage changing from 100% to 0%."><figcaption>Actual production extension and MCP responses. Scripted fixture source edit. <a href="https://github.com/Yudis-bit/why-ui/blob/main/docs/demo.md">Evidence and reproduction</a>.</figcaption></figure>
+<section id="install"><p class="eyebrow">TRY IT LOCALLY</p><h2>Install. Pair. Point.</h2>
+<p>Node 22.13+ and desktop Chrome with unpacked extensions enabled.</p>
+<pre><code>npm install -g https://github.com/Yudis-bit/why-ui/releases/download/v0.1.0/why-ui-0.1.0.tgz
+why-ui doctor
+why-ui pair</code></pre>
+<ol><li>Download the <a href="https://github.com/Yudis-bit/why-ui/releases/download/v0.1.0/why-ui-extension-v0.1.0.zip">extension ZIP</a>, extract it into a stable directory, and load it unpacked from <code>chrome://extensions</code>.</li><li>Enter the pairing token in extension Options. Configure your coding agent's MCP connection.</li><li>Open your app, select the why-ui toolbar action, and move the pointer over the interaction. For a fully covered target, provide its known selector.</li></ol>
+<p><a href="https://github.com/Yudis-bit/why-ui#claude-code--cursor">Claude Code / Cursor configuration</a> · <a href="https://github.com/Yudis-bit/why-ui#build-from-source">Build from source</a></p></section>
+<section class="columns"><div><h2>Two tools. One loop.</h2><p><code>inspect_interaction</code> returns browser hits, sampled reachability, conservative stacking causality, and source references.</p><p><code>verify_fix</code> observes changed source and runtime, reconciles identity, rebuilds geometry and sampling, and checks a meaningful Safe Core.</p></div><div><h2>Uncertainty stays visible.</h2><p>PASS, FAIL, or INCONCLUSIVE. Missing maps stay UNMAPPED; static correlations are labeled heuristic. A replacement blocker still fails verification.</p><p>Ratios are estimates. This does not prove event-handler correctness, keyboard behavior, or every point in a shape.</p></div></section>
+<section class="columns"><div><h2>Local by construction.</h2><p>Loopback only, paired extension Origin, HMAC authentication. No page-storage harvesting, screenshots during inspection, or activating probes.</p><p><a href="https://github.com/Yudis-bit/why-ui/blob/main/docs/security.md">Security model</a></p></div><div><h2>Tested, with boundaries.</h2><p>Real production-extension E2E on Linux and Windows. Vite/React 18 and Next/Turbopack/React 19 source mapping and native-HMR checks.</p><p>One armed tab. Closed shadow roots and iframe interiors remain opaque. <a href="https://github.com/Yudis-bit/why-ui/blob/main/docs/framework-validation.md">Exact tested setups</a>.</p></div></section>
+<footer><a href="https://github.com/Yudis-bit/why-ui">Source & architecture</a><a href="https://github.com/Yudis-bit/why-ui/discussions">Share a UI bug</a><span>MIT · No cloud service or analytics</span></footer>
+</main></body></html>

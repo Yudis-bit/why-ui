@@ -25,7 +25,8 @@
     "test:browser:install": "playwright install chromium",
     "test:dogfood": "npm run build && playwright test --config tests/dogfood/playwright.config.mjs",
     "package:release": "npm run build && node scripts/package-release.mjs",
-    "test:package": "npm run package:release && node --test tests/package/*.test.mjs"
+    "test:package": "npm run package:release && node --test tests/package/*.test.mjs",
+    "demo:record": "npm run build && node scripts/record-demo.mjs"
   },
   "workspaces": [
     "tests/browser/fixtures/react18",
