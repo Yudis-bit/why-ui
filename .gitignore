@@ -1,6 +1,8 @@
 node_modules/
 dist/
 release/
+site-dist/
+metrics/
 coverage/
 test-results/
 playwright-report/

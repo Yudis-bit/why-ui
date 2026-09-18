@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/Yudis-bit/why-ui/security/advisories/new
+    about: Report vulnerabilities without exposing credentials publicly.
+  - name: Help and discussion
+    url: https://github.com/Yudis-bit/why-ui/discussions
+    about: Ask about setup or share a reproducible UI bug.

@@ -1,0 +1,491 @@
+{
+  "capturedAt": "2026-09-06T11:25:54.209Z",
+  "browser": "153.0.8010.12",
+  "inspection": {
+    "ok": true,
+    "result": {
+      "schemaVersion": "why-ui/inspection@1",
+      "inspectionId": "27f4f302-12ea-469b-ab85-f2d8a5554bbc",
+      "capturedAt": 1788693940328,
+      "target": {
+        "interactionTarget": {
+          "classes": [
+            "styles_payment"
+          ],
+          "domPath": [
+            {
+              "nthOfType": 1,
+              "tagName": "html"
+            },
+            {
+              "nthOfType": 1,
+              "tagName": "body"
+            },
+            {
+              "id": "root",
+              "nthOfType": 1,
+              "tagName": "div"
+            },
+            {
+              "classes": [
+                "styles_payment"
+              ],
+              "id": "payment",
+              "nthOfType": 1,
+              "tagName": "button"
+            }
+          ],
+          "id": "payment",
+          "name": "Pay invoice",
+          "rect": {
+            "bottom": 360,
+            "height": 90,
+            "left": 60,
+            "right": 320,
+            "top": 270,
+            "width": 260,
+            "x": 60,
+            "y": 270
+          },
+          "selectorHint": "html:nth-of-type(1) > body:nth-of-type(1) > #root > #payment",
+          "tagName": "button",
+          "textPreview": "Pay invoice"
+        },
+        "selectionMethod": "selector-hint",
+        "computed": {
+          "clip-path": "none",
+          "contain": "none",
+          "content-visibility": "visible",
+          "display": "block",
+          "filter": "none",
+          "isolation": "auto",
+          "mix-blend-mode": "normal",
+          "opacity": "1",
+          "overflow": "visible",
+          "overflow-x": "visible",
+          "overflow-y": "visible",
+          "perspective": "none",
+          "pointer-events": "auto",
+          "position": "absolute",
+          "transform": "none",
+          "visibility": "visible",
+          "will-change": "auto",
+          "z-index": "auto"
+        },
+        "state": {
+          "ariaDisabled": false,
+          "disabled": false,
+          "hidden": false,
+          "inert": false
+        }
+      },
+      "primaryBlocker": {
+        "node": {
+          "classes": [
+            "styles_backdrop"
+          ],
+          "domPath": [
+            {
+              "nthOfType": 1,
+              "tagName": "html"
+            },
+            {
+              "nthOfType": 1,
+              "tagName": "body"
+            },
+            {
+              "id": "root",
+              "nthOfType": 1,
+              "tagName": "div"
+            },
+            {
+              "classes": [
+                "styles_backdrop"
+              ],
+              "id": "backdrop",
+              "nthOfType": 1,
+              "tagName": "div"
+            }
+          ],
+          "id": "backdrop",
+          "rect": {
+            "bottom": 360,
+            "height": 90,
+            "left": 60,
+            "right": 320,
+            "top": 270,
+            "width": 260,
+            "x": 60,
+            "y": 270
+          },
+          "selectorHint": "html:nth-of-type(1) > body:nth-of-type(1) > #root > #backdrop",
+          "tagName": "div"
+        },
+        "computed": {
+          "clip-path": "none",
+          "contain": "none",
+          "content-visibility": "visible",
+          "display": "block",
+          "filter": "none",
+          "isolation": "auto",
+          "mix-blend-mode": "normal",
+          "opacity": "1",
+          "overflow": "visible",
+          "overflow-x": "visible",
+          "overflow-y": "visible",
+          "perspective": "none",
+          "pointer-events": "auto",
+          "position": "absolute",
+          "transform": "none",
+          "visibility": "visible",
+          "will-change": "auto",
+          "z-index": "10"
+        },
+        "state": {
+          "ariaDisabled": false,
+          "disabled": false,
+          "hidden": false,
+          "inert": false
+        },
+        "blockedSamples": 64,
+        "blockedRatio": 1
+      },
+      "interactionSurface": {
+        "totalSamples": 64,
+        "reachableSamples": 0,
+        "blockedSamples": 64,
+        "outsideShapeSamples": 0,
+        "unresolvedSamples": 0,
+        "outsideViewportSamples": 0,
+        "reachableRatio": 0,
+        "blockedRatio": 1,
+        "eligibleSamples": 64
+      },
+      "diagnosis": {
+        "cause": "FOREIGN_OCCLUSION",
+        "evidence": [
+          "64 samples contain a foreign hit ahead of the target family; 0 are reachable."
+        ]
+      },
+      "causalExplanation": {
+        "cause": "UNKNOWN_PAINT_CAUSE",
+        "evidence": [
+          "Browser elementsFromPoint placed the primary blocker ahead of the target family at captured samples."
+        ],
+        "targetContext": {
+          "node": {
+            "domPath": [
+              {
+                "nthOfType": 1,
+                "tagName": "html"
+              }
+            ],
+            "rect": {
+              "bottom": 0,
+              "height": 0,
+              "left": 0,
+              "right": 960,
+              "top": 0,
+              "width": 960,
+              "x": 0,
+              "y": 0
+            },
+            "selectorHint": "html:nth-of-type(1)",
+            "tagName": "html"
+          },
+          "triggers": [
+            {
+              "property": "root",
+              "value": "document"
+            }
+          ]
+        },
+        "blockerContext": {
+          "node": {
+            "classes": [
+              "styles_backdrop"
+            ],
+            "domPath": [
+              {
+                "nthOfType": 1,
+                "tagName": "html"
+              },
+              {
+                "nthOfType": 1,
+                "tagName": "body"
+              },
+              {
+                "id": "root",
+                "nthOfType": 1,
+                "tagName": "div"
+              },
+              {
+                "classes": [
+                  "styles_backdrop"
+                ],
+                "id": "backdrop",
+                "nthOfType": 1,
+                "tagName": "div"
+              }
+            ],
+            "id": "backdrop",
+            "rect": {
+              "bottom": 360,
+              "height": 90,
+              "left": 60,
+              "right": 320,
+              "top": 270,
+              "width": 260,
+              "x": 60,
+              "y": 270
+            },
+            "selectorHint": "html:nth-of-type(1) > body:nth-of-type(1) > #root > #backdrop",
+            "tagName": "div"
+          },
+          "triggers": [
+            {
+              "property": "position",
+              "value": "absolute"
+            },
+            {
+              "property": "z-index",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "sources": {
+        "target": {
+          "status": "MAPPED",
+          "references": [
+            {
+              "file": "src/Payment.jsx",
+              "scope": "candidate",
+              "certainty": "symbolicated",
+              "line": 5,
+              "column": 10
+            }
+          ]
+        },
+        "primaryBlocker": {
+          "status": "MAPPED",
+          "references": [
+            {
+              "file": "src/Payment.jsx",
+              "scope": "candidate",
+              "certainty": "symbolicated",
+              "line": 8,
+              "column": 10
+            }
+          ]
+        },
+        "ancestors": [],
+        "css": []
+      },
+      "limitations": [
+        "Coverage is a bounded, area-weighted sample estimate, not exact pixel or polygon coverage.",
+        "User intent cannot be inferred beneath an overlay. Pointer-transparent, hidden, or absent targets require prior identity evidence.",
+        "Closed shadow interiors and frame contents are not inspected; evidence applies to this document only.",
+        "Reachability does not prove application event-handler behavior. A healthy sampled surface has cause UNKNOWN.",
+        "Descriptions are bounded hints, not guaranteed unique selectors or complete accessible names.",
+        "Capture is synchronous but compositor animations and changing hit stacks are not an atomic browser snapshot."
+      ]
+    }
+  },
+  "verification": {
+    "ok": true,
+    "result": {
+      "inspectionId": "27f4f302-12ea-469b-ab85-f2d8a5554bbc",
+      "verificationId": "cf0269e6-cfe0-44a3-80a4-8bd1fe452daf",
+      "status": "VERIFIED_PASS",
+      "reconciliation": {
+        "candidateCount": 1,
+        "signals": [
+          {
+            "evidence": "Deterministic identity weight 35.",
+            "matched": false,
+            "signal": "source-runtime-identity"
+          },
+          {
+            "evidence": "Deterministic identity weight 20.",
+            "matched": true,
+            "signal": "component-owner"
+          },
+          {
+            "evidence": "Deterministic identity weight 35.",
+            "matched": false,
+            "signal": "react-key"
+          },
+          {
+            "evidence": "Deterministic identity weight 10.",
+            "matched": true,
+            "signal": "tag"
+          },
+          {
+            "evidence": "Deterministic identity weight 5.",
+            "matched": false,
+            "signal": "role"
+          },
+          {
+            "evidence": "Deterministic identity weight 25.",
+            "matched": true,
+            "signal": "accessible-name"
+          },
+          {
+            "evidence": "Deterministic identity weight 50.",
+            "matched": true,
+            "signal": "stable-id"
+          },
+          {
+            "evidence": "Deterministic identity weight 8.",
+            "matched": true,
+            "signal": "stable-classes"
+          },
+          {
+            "evidence": "Deterministic identity weight 8.",
+            "matched": true,
+            "signal": "ancestry-fingerprint"
+          },
+          {
+            "evidence": "Deterministic identity weight 5.",
+            "matched": true,
+            "signal": "text-fingerprint"
+          },
+          {
+            "evidence": "Deterministic identity weight 2.",
+            "matched": true,
+            "signal": "relative-structure"
+          }
+        ],
+        "status": "MATCHED",
+        "target": {
+          "classes": [
+            "styles_payment"
+          ],
+          "domPath": [
+            {
+              "nthOfType": 1,
+              "tagName": "html"
+            },
+            {
+              "nthOfType": 1,
+              "tagName": "body"
+            },
+            {
+              "id": "root",
+              "nthOfType": 1,
+              "tagName": "div"
+            },
+            {
+              "classes": [
+                "styles_payment"
+              ],
+              "id": "payment",
+              "nthOfType": 1,
+              "tagName": "button"
+            }
+          ],
+          "id": "payment",
+          "name": "Pay invoice",
+          "rect": {
+            "bottom": 390,
+            "height": 90,
+            "left": 80,
+            "right": 360,
+            "top": 300,
+            "width": 280,
+            "x": 80,
+            "y": 300
+          },
+          "selectorHint": "html:nth-of-type(1) > body:nth-of-type(1) > #root > #payment",
+          "tagName": "button",
+          "textPreview": "Pay invoice"
+        }
+      },
+      "baseline": {
+        "reachableSamples": 0,
+        "blockedSamples": 64,
+        "outsideShapeSamples": 0,
+        "reachableRatio": 0,
+        "blockedRatio": 1,
+        "primaryBlocker": {
+          "classes": [
+            "styles_backdrop"
+          ],
+          "domPath": [
+            {
+              "nthOfType": 1,
+              "tagName": "html"
+            },
+            {
+              "nthOfType": 1,
+              "tagName": "body"
+            },
+            {
+              "id": "root",
+              "nthOfType": 1,
+              "tagName": "div"
+            },
+            {
+              "classes": [
+                "styles_backdrop"
+              ],
+              "id": "backdrop",
+              "nthOfType": 1,
+              "tagName": "div"
+            }
+          ],
+          "id": "backdrop",
+          "rect": {
+            "bottom": 360,
+            "height": 90,
+            "left": 60,
+            "right": 320,
+            "top": 270,
+            "width": 260,
+            "x": 60,
+            "y": 270
+          },
+          "selectorHint": "html:nth-of-type(1) > body:nth-of-type(1) > #root > #backdrop",
+          "tagName": "div"
+        }
+      },
+      "current": {
+        "reachableSamples": 64,
+        "blockedSamples": 0,
+        "outsideShapeSamples": 0,
+        "reachableRatio": 1,
+        "blockedRatio": 0,
+        "primaryBlocker": null
+      },
+      "originalBlockerPresent": false,
+      "selectionAnchor": "INVALIDATED_BY_REFLOW",
+      "safeCore": {
+        "exists": true,
+        "approximateAreaPx2": 11025,
+        "minimumClearancePx": 26.25,
+        "reachableRatio": 1
+      },
+      "reasons": [
+        "The target reconciled, the source and browser changed, three fresh surfaces stabilized, and no sampled blocker remains. A connected sampled safe interior exceeds 64 px² with at least 4 px clearance."
+      ],
+      "lifecycle": {
+        "sourceChanged": true,
+        "runtimeChanged": true,
+        "stableObservations": 3
+      },
+      "causalExplanation": {
+        "cause": "UNKNOWN_PAINT_CAUSE",
+        "evidence": [
+          "No foreign hit was established; no paint-order cause is claimed."
+        ]
+      },
+      "reprojectedAnchor": {
+        "u": 0.4423076923076923,
+        "v": 0.5,
+        "x": 203.84615384615384,
+        "y": 345
+      }
+    }
+  }
+}
