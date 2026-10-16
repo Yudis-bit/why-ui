@@ -36,10 +36,10 @@
     "node": ">=22.13.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0",
-    "@types/chrome": "^0.2.8",
-    "@types/node": "^26.4.1",
-    "@types/ws": "^8.18.1",
+    "@playwright/test": "1.64.0",
+    "@types/chrome": "^0.3.5",
+    "@types/node": "^26.6.5",
+    "@types/ws": "^8.18.2",
     "esbuild": "0.28.2",
     "fflate": "0.8.3",
     "jsdom": "^26.1.0",
@@ -47,9 +47,9 @@
   },
   "dependencies": {
     "@jridgewell/trace-mapping": "^0.3.31",
-    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "ajv": "^8.20.0",
-    "ws": "^8.21.3"
+    "ws": "^8.22.0"
   },
   "license": "MIT",
   "author": "Yudistira Putra",
